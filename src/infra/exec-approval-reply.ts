@@ -1,8 +1,4 @@
 // Builds reply payloads for exec approval prompts and outcomes.
-import {
-  normalizeOptionalLowercaseString,
-  normalizeOptionalString,
-} from "@openclaw/normalization-core/string-coerce";
 import type { ReplyPayload } from "../auto-reply/types.js";
 import type {
   InteractiveReply,
@@ -10,6 +6,10 @@ import type {
   MessagePresentation,
   MessagePresentationButton,
 } from "../interactive/payload.js";
+import {
+  normalizeOptionalLowercaseString,
+  normalizeOptionalString,
+} from "../plugin-sdk/string-coerce-runtime.js";
 import { formatHumanList } from "../shared/human-list.js";
 import { formatApprovalDisplayPath } from "./approval-display-paths.js";
 import {

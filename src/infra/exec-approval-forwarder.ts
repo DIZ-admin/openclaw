@@ -1,6 +1,4 @@
 // Forwards exec approval requests between runtime sessions and approval handlers.
-import { normalizeOptionalString } from "@openclaw/normalization-core/string-coerce";
-import { normalizeStringEntries } from "@openclaw/normalization-core/string-normalization";
 import type { ReplyPayload } from "../auto-reply/types.js";
 import {
   getLoadedChannelPlugin,
@@ -20,6 +18,10 @@ import {
   buildPluginApprovalResolvedReplyPayload,
 } from "../plugin-sdk/approval-renderers.js";
 import { channelRouteDedupeKey } from "../plugin-sdk/channel-route.js";
+import {
+  normalizeOptionalString,
+  normalizeStringEntries,
+} from "../plugin-sdk/string-coerce-runtime.js";
 import {
   isDeliverableMessageChannel,
   normalizeMessageChannel,
@@ -45,8 +47,6 @@ import {
   type PluginApprovalResolved,
 } from "./plugin-approvals.js";
 
-// Approval forwarding mirrors foreground exec/plugin approvals into configured
-// chat targets, then sends resolution/expiry notices to the same targets.
 const log = createSubsystemLogger("gateway/exec-approvals");
 type DeliverApprovalPayloads =
   typeof import("../channels/message/runtime.js").sendDurableMessageBatch;
